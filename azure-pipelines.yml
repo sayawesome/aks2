@@ -28,12 +28,7 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'akscrr'
-        repository: 'sayawesomeaks'
-        command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'
+
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
@@ -47,9 +42,5 @@ stages:
           v3
           v3
           
-    - bash: echo Contents in System Default Working Directory; ls -R $(System.DefaultWorkingDirectory)        
-    - bash: echo Before copying Contents in Build Artifact Directory; ls -R $(Build.ArtifactStagingDirectory)        
-    # Task-2: Copy files (Copy files from a source folder to target folder)
-    # Source Directory: $(System.DefaultWorkingDirectory)/kube-manifests
-    # Target Directory: $(Build.ArtifactStagingDirectory)
+
 
